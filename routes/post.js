@@ -36,12 +36,12 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
 	Post.findOne({_id:req.params.id}, (err, post) => {
 		if (err) return res.json(err);
-		res.render('posts/show', {post:post});
+		res.render('posts/edit', {post:post});
 	});
 });
 
 // update
-router.put('/:id', (req, ress) => {
+router.put('/:id', (req, res) => {
 	req.body.updatedAt = Date.now();
 	Post.findOneAndUpdate({_id:req.params.id}, req.body, (err, post) => {
 		if (err) return res.json(err);
