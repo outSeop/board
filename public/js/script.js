@@ -1,4 +1,4 @@
-$(() => {
+$(function() {
 	function get2digits(num) {
 		return ('0' + num).slice(-2);
 	}
@@ -19,8 +19,8 @@ $(() => {
 	}
 
 	function convertDate() {
-		$('[data-date').each((index, element) => {
-			var dataString = $(element).data('date');
+		$('[data-date]').each((index, element) => {
+			var dateString = $(element).data('date');
 			if (dateString) {
 				var date = new Date(dateString);
 				$(element).html(getDate(date));
@@ -29,15 +29,16 @@ $(() => {
 	}
 
 	function convertDateTime() {
-		$('[data-date-time').each((index, element) => {
+		$('[data-date-time]').each((index, element) => {
 			var dateString = $(element).data('date-time');
 			if (dateString) {
-				var date = new Date(dataString);
-				$(element).html(get(date) + ' ' + getTime(date));
+				var date = new Date(dateString);
+				$(element).html(getDate(date) + ' ' + getTime(date));
 			}
 		});
 	}
 
+	console.log("script!!");
 	convertDate();
 	convertDateTime();
 });
