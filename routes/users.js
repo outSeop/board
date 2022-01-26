@@ -1,8 +1,9 @@
 var express = require('express');
+var { body, validationResult } = require('express-validator');
 var router = express.Router();
 var User = require('../models/User');
 
-router.get('/', (req. res) => {
+router.get('/', (req, res) => {
 	User.find({})
 		.sort({username:1})
 		.exec((err, users) => {
@@ -17,12 +18,16 @@ router.get('/new', function(req, res){
 });
 
 // create
-router.post('/', function(req, res){
-  User.create(req.body, function(err, user){
-    if(err) return res.json(err);
-    res.redirect('/users');
-  });
-});
+router.post('/',
+	body('passwordConfirmation').custom((value, {req}) => {
+		if (value !== req.body.password) {
+			throw new Error('Password confimation does not match password');
+		}
+	}),
+	(req, res) => {
+		
+	}
+);
 
 // show
 router.get('/:username', function(req, res){

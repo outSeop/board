@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
 },{
 	toObject:{virtuals:true}
 });
-
+/*
 userSchema.virtual('passwordConfirmation')
 	.get(() => { return  this._passwordConfirmation; })
 	.set((value) => { this._paswordConfirmation=value});
@@ -21,7 +21,7 @@ userSchema.virtual('currentPassword')
 	.get(() => { return  this._currentPassword; })
 	.set((value) => { this._currentPassword=value});
 
-userScheam.virtual('newPassword')
+userSchema.virtual('newPassword')
 	.get(() => { return  this._newPassword; })
 	.set((value) => { this._newPassword=value});
 
@@ -49,6 +49,6 @@ userSchema.path('password').validate((v) => {
 		}
 	}
 });
-
+*/
 var User = mongoose.model('user', userSchema);
 module.exports = User;
