@@ -38,7 +38,6 @@ $(function() {
 		});
 	}
 
-	console.log("script!!");
 	convertDate();
 	convertDateTime();
 });

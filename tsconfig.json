@@ -1,0 +1,8 @@
+{
+	"include": ["./public/ts/*.ts"],
+	"exclude": ["./node_modules"],
+	"compilerOptions": {
+		"typeRoots" : ["./my-types"],
+		"outDir": "./public/tjs"
+  }
+}

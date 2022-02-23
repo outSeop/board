@@ -1,0 +1,18 @@
+
+module.exports.verifyUserLoginData = (req, res, User) => {
+	var errorList = [];
+	var x = {};
+	var promise = new Promise((resolve, reject) => {
+		checkDuplication('username', req.body.username, User, x);
+		resolve();
+	})
+	.then (() => {
+		console.log(x.v);
+		errorList = errorList
+			.concat(checkBlank('username', req.body.username, '1.1'))
+			.concat(checkBlank('name', req.body.name, '1.2'))
+			.concat(checkBlank('password', req.body.password, '1.3'))
+			.concat(checkBlank('passwordConfirmation', req.body.passwordConfirmation, '1.4'));
+		console.log(errorList);
+	})
+}

@@ -2,6 +2,7 @@ var express = require('express');
 var { body, validationResult } = require('express-validator');
 var router = express.Router();
 var User = require('../models/User');
+var Errors = require('./errorNoteServer');
 
 router.get('/', (req, res) => {
 	User.find({})
@@ -12,22 +13,31 @@ router.get('/', (req, res) => {
 		});
 });
 
+router.post('/new', (req, res) => {
+	User.findOne({'username':req.body.username}, (err, data) => {
+		if (err) {console.log(err); return err;}
+		if (data != null) {
+			res.json(Errors.ERROR_DUPLICATION);
+		}
+		else {
+			res.json(Errors.SUCCESS);
+		}
+		return ;
+	});
+});
+
 // New
-router.get('/new', function(req, res){
+router.get('/new', function(req, res) {
   res.render('users/new');
 });
 
 // create
-router.post('/',
-	body('passwordConfirmation').custom((value, {req}) => {
-		if (value !== req.body.password) {
-			throw new Error('Password confimation does not match password');
-		}
-	}),
-	(req, res) => {
-		
-	}
-);
+router.post('/', (req, res) => {
+	User.create(req.body, (err, post) => {
+		if (err) return res.json(err);
+		res.send('200');
+	});
+});
 
 // show
 router.get('/:username', function(req, res){
