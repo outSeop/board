@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-	User.findOne({'username':req.body.username}, (err, data) => {
+	User.findOne({[req.body.id]:req.body.input}, (err, data) => {
 		if (err) {console.log(err); return err;}
-		if (data != null) {
+		if (data) {
 			res.json(Errors.ERROR_DUPLICATION);
 		}
 		else {

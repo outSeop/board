@@ -2,7 +2,7 @@
 <html>
   <head>
 	<script src="/tjs/verify.js"></script>
-	<script src="/tjs/inputData.js"></script>
+	<script src="/tjs/inputDataClass.js"></script>
 	<script src="/tjs/verifyClass.js"></script>
     <%- include('../partials/head') %>
   </head>
@@ -17,14 +17,14 @@
 	<div class="form-group row">
 		<label for="username" class="col-sm-3 col-form-label">Username*</label>
 		<div class="col-sm-7">
-		<input type="text" id="username" name="username" value="" class="signup-input" onchange="verify()">
+		<input type="text" id="username" name="username" value="" class="signup-input" onchange="verify(username)">
 		<span class="input-error" id="username-error"></span>
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="name" class="col-sm-3 col-form-label">Name*</label>
 		<div class="col-sm-7">
-		<input type="text" id="name" name="name" value="" class="signup-input" onchange="verifyName()">
+		<input type="text" id="name" name="name" value="" class="signup-input" onchange="verify(name)">
 		<span class="input-error" id="name-error"></span>
 		</div>
 	</div>
